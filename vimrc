@@ -178,6 +178,7 @@ vnoremap <silent> <C-j> :<C-u>call MoveVisualDown()<CR>
 set shiftwidth=4
 set tabstop=4
 set smarttab
+set expandtab
 
 set lbr
 set tw=500
