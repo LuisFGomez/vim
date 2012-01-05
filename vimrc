@@ -177,7 +177,7 @@ vnoremap <silent> <C-j> :<C-u>call MoveVisualDown()<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set shiftwidth=4
 set tabstop=4
-set smarttab
+"set smarttab
 set expandtab
 
 set lbr
@@ -308,6 +308,12 @@ nnoremap TR :NERDTreeToggle<CR>
 "let g:SuperTabDefaultCompletionType = "context"
 
 " ==================================================================
+" C/C++ Section
+" ==================================================================
+au FileType c,cpp highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+au Filetype c,cpp match OverLength /\%81v.\+/
+
+" ==================================================================
 " Python Section
 " ==================================================================
 au FileType python set nocindent
@@ -315,10 +321,6 @@ au FileType python highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 au FileType python match OverLength /\%81v.\+/
 let python_highlight_all = 1
 au FileType python syn keyword pythonDecorator True None False self
-
-" Luis don't need this
-au BufNewFile,BufRead *.jinja set syntax=htmljinja
-au BufNewFile,BufRead *.mako set ft=mako
 
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 
