@@ -40,11 +40,12 @@ nmap <leader>w :w!<cr>
 map <leader>e :e! ~/.vim_runtime/vimrc<cr>
 
 " When vimrc is edited, reload it
-autocmd! bufwritepost vimrc source ~/.vim_runtime/vimrc
+"autocmd! bufwritepost vimrc source ~/.vim_runtime/vimrc
+autocmd! bufwritepost vimrc source %
 
 " Turn on line numbers:
 set number
-" Toggle line numbers and fold column for easy copying:
+" Toggle line numbers with F2 and fold column for easy copying:
 nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
 
 
@@ -90,8 +91,8 @@ set ffs=unix,dos,mac "Default file types
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Set 7 lines to the curors - when moving vertical..
-set so=7
+" Set 10 lines of scroll space when scrolling
+set so=10
 set wildmenu 	"Turn on WiLd menu
 set mouse=a		" Enable mouse usage (all modes) in terminals
 set ruler 		"Always show current position
@@ -119,7 +120,7 @@ if has("autocmd")
 endif
 
 " ==================================================================
-" Enable moving entire lines with CTRL-j and CTRL-k
+" Enable moving lines up/down with CTRL-k/CTRL-j
 " ==================================================================
 function! MoveLineUp()
     call MoveLineOrVisualUp(".", "")
@@ -232,16 +233,22 @@ function! VisualSearch(direction) range
 	let @/ = l:pattern
 	let @" = l:saved_reg
 endfunction
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Parenthesis/bracket expanding
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Wrap parenthesis/brackets around visual text
-vnoremap $1 <esc>`>a)<esc>`<i(<esc>
-vnoremap $2 <esc>`>a]<esc>`<i[<esc>
-vnoremap $3 <esc>`>a}<esc>`<i{<esc>
-vnoremap $$ <esc>`>a"<esc>`<i"<esc>
-vnoremap $q <esc>`>a'<esc>`<i'<esc>
-vnoremap $e <esc>`>a"<esc>`<i"<esc>
+" Typing a comma + the punctutation will wrap selection with punctuation
+vnoremap ,( <esc>`>a)<esc>`<i(<esc>
+vnoremap ,[ <esc>`>a]<esc>`<i[<esc>
+vnoremap ,{ <esc>`>a}<esc>`<i{<esc>
+vnoremap ,< <esc>`>a"<esc>`<i"<esc>
+vnoremap ,' <esc>`>a'<esc>`<i'<esc>
+vnoremap ," <esc>`>a"<esc>`<i"<esc>
+" This bad boy will let you wrap a visual selection with a {, but with a twist:
+"   it will place a newline before both the opening and closing brace
+"   all lines are also reindented to make them pretty
+vnoremap ,.{ <esc>`>a<cr>}<esc>`<i{<cr><esc>gvj=
 
 " Map auto complete of (, ", ', [
 inoremap $1 ()<esc>i
@@ -251,25 +258,6 @@ inoremap $4 {<esc>o}<esc>O
 inoremap $q ''<esc>i
 inoremap $e ""<esc>i
 
-" ==================================================================
-" Taglist Commands/Variables
-" ==================================================================
-" Display function name in status bar:
-"let g:ctags_statusline=1
-" Automatically start script
-"let generate_tags=1
-" Displays taglist results in a vertical window:
-"let Tlist_Use_Horiz_Window=0
-" Shorter commands to toggle Taglist display
-"nnoremap TT :TlistToggle<CR>
-" map <F4> :TlistToggle<CR>
-" Various Taglist diplay config:
-"let Tlist_Use_Right_Window = 1
-"let Tlist_Compact_Format = 1
-"let Tlist_WinWidth = 60
-"let Tlist_Exit_OnlyWindow = 1
-"let Tlist_GainFocus_On_ToggleOpen = 1
-"let Tlist_File_Fold_Auto_Close = 1
 " ==================================================================
 " Tagbar Commands/Variables
 " ==================================================================
