@@ -259,6 +259,12 @@ inoremap $q ''<esc>i
 inoremap $e ""<esc>i
 
 " ==================================================================
+" TaskList Options
+" ==================================================================
+let g:tlWindowPosition = 1 "open on the bottom
+map TL <Plug>TaskList
+
+" ==================================================================
 " Tagbar Commands/Variables
 " ==================================================================
 " Shorter commands to toggle Taglist display
