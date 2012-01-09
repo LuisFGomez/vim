@@ -242,14 +242,16 @@ autocmd! FileType qf wincmd J
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Parenthesis/bracket expanding
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Wrap parenthesis/brackets around visual text
+" Wrap stuff around visual text
 " Typing a comma + the punctutation will wrap selection with punctuation
-vnoremap ,( <esc>`>a)<esc>`<i(<esc>
-vnoremap ,[ <esc>`>a]<esc>`<i[<esc>
-vnoremap ,{ <esc>`>a}<esc>`<i{<esc>
-vnoremap ,< <esc>`>a"<esc>`<i"<esc>
-vnoremap ,' <esc>`>a'<esc>`<i'<esc>
-vnoremap ," <esc>`>a"<esc>`<i"<esc>
+vnoremap <leader>( <esc>`>a)<esc>`<i(<esc>
+vnoremap <leader>[ <esc>`>a]<esc>`<i[<esc>
+vnoremap <leader>{ <esc>`>a}<esc>`<i{<esc>
+vnoremap <leader>< <esc>`>a"<esc>`<i"<esc>
+vnoremap <leader>' <esc>`>a'<esc>`<i'<esc>
+vnoremap <leader>" <esc>`>a"<esc>`<i"<esc>
+vnoremap <leader><space> <esc>`>a<space><esc>`<i<space><esc>
+nnoremap <leader><space> i<space><esc>la<space><esc>l
 " This bad boy will let you wrap a visual selection with a {, but with a twist:
 "   it will place a newline before both the opening and closing brace
 "   all lines are also reindented to make them pretty
@@ -274,6 +276,7 @@ map TL <Plug>TaskList
 " ==================================================================
 " Shorter commands to toggle Taglist display
 nnoremap TT :TagbarToggle<CR>
+let g:tagbar_singleclick=1
 
 " ==================================================================
 " MinibufExplorer Plugin
