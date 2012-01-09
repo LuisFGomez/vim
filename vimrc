@@ -235,6 +235,11 @@ function! VisualSearch(direction) range
 endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Quickfix window Options
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Always move the quickfix to bottom, full-width
+autocmd! FileType qf wincmd J
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Parenthesis/bracket expanding
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Wrap parenthesis/brackets around visual text
@@ -290,6 +295,7 @@ let g:miniBufExplModSelTarget = 1	" Dont put new windows in non-modifiable
 let g:miniBufExplorerMoreThanOne = 2	" Don't start minibufexpl till 2 or more windows
 let g:miniBufExplUseSingleClick = 1
 let g:miniBufExplSplitBelow=0 	" Open minibuf above/left of current window
+let g:miniBufExplMaxSize=3  "Maximum size in lines
 
 " ==================================================================
 " Custom NERDTree commands
