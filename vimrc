@@ -247,7 +247,7 @@ autocmd! FileType qf wincmd J
 vnoremap <leader>( <esc>`>a)<esc>`<i(<esc>
 vnoremap <leader>[ <esc>`>a]<esc>`<i[<esc>
 vnoremap <leader>{ <esc>`>a}<esc>`<i{<esc>
-vnoremap <leader>< <esc>`>a"<esc>`<i"<esc>
+vnoremap <leader>< <esc>`>a><esc>`<i<<esc>
 vnoremap <leader>' <esc>`>a'<esc>`<i'<esc>
 vnoremap <leader>" <esc>`>a"<esc>`<i"<esc>
 vnoremap <leader><space> <esc>`>a<space><esc>`<i<space><esc>
@@ -287,7 +287,7 @@ let g:tagbar_singleclick=1
 " Map Ctrl-h, Ctrl-l to move left/right between buffers
 nnoremap <silent> <C-l> :bn<CR>
 nnoremap <silent> <C-h> :bp<CR>
-" Close the current buffer with ctrl-c
+" Delete the current buffer with ctrl-c
 nnoremap <silent> <C-c> :bd<CR>
 " <,,b> toggles minibufexplorer
 map <Leader>b :TMiniBufExplorer<cr>
