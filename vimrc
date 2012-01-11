@@ -120,6 +120,12 @@ if has("autocmd")
 endif
 
 " ==================================================================
+" Insert blank lines above, below without changing cursor (ranges allowed)
+" ==================================================================
+map <Leader>O :<C-U>call append(line(".") -1, repeat([''], v:count1))<CR>
+map <Leader>o :<C-U>call append(line("."), repeat([''], v:count1))<CR>
+
+" ==================================================================
 " Enable moving lines up/down with CTRL-k/CTRL-j
 " ==================================================================
 function! MoveLineUp()
@@ -239,6 +245,7 @@ endfunction
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Always move the quickfix to bottom, full-width
 autocmd! FileType qf wincmd J
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Parenthesis/bracket expanding
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
