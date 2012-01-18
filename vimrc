@@ -226,7 +226,7 @@ function! VisualSearch(direction) range
 	execute "normal! vgvy"
 
 	let l:pattern = escape(@", '\\/.*$^~[]')
-	let l:pattern = substitute(l:pattern, "\n$", "")
+	let l:pattern = substitute(l:pattern, "\n$", "", "")
 
 	if a:direction == 'b'
 		execute "normal ?" . l:pattern . "^M"
@@ -249,8 +249,13 @@ autocmd! FileType qf wincmd J
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Project plugin mappings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:proj_flags="isg"
+let g:proj_flags="isgt"
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => cscope options
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set csprg=gtags-cscope  "make the :cscope command use the gtags-cscope instead.
+                        " This requires the program 'global' to be installed'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Parenthesis/bracket expanding
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -289,6 +294,7 @@ map TL <Plug>TaskList
 " Shorter commands to toggle Taglist display
 nnoremap TT :TagbarToggle<CR>
 let g:tagbar_singleclick=1
+let g:tagbar_autoclose=1
 
 " ==================================================================
 " MinibufExplorer Plugin
@@ -304,18 +310,22 @@ nnoremap <silent> <C-c> :bd<CR>
 " <,,b> toggles minibufexplorer
 map <Leader>b :TMiniBufExplorer<cr>
 
-let g:miniBufExplModSelTarget = 1	" Dont put new windows in non-modifiable
-									"  buffers.	
-
-let g:miniBufExplorerMoreThanOne = 2	" Don't start minibufexpl till 2 or more windows
+let g:miniBufExplModSelTarget = 1    " Dont put new windows in non-modifiable
+                                     " buffers.
+let g:miniBufExplorerMoreThanOne = 2 " Don't start minibufexpl till 2 or more windows
 let g:miniBufExplUseSingleClick = 1
-let g:miniBufExplSplitBelow=0 	" Open minibuf above/left of current window
-let g:miniBufExplMaxSize=3  "Maximum size in lines
+let g:miniBufExplSplitBelow=0        " Open minibuf above/left of current window
+let g:miniBufExplMaxSize=3           " Maximum size in lines
 
 " ==================================================================
 " Custom NERDTree commands
 " ==================================================================
 nnoremap TR :NERDTreeToggle<CR>
+
+" ==================================================================
+" Custom NERDCommenter commands
+" ==================================================================
+let NERDSpaceDelims=1
 
 " ==================================================================
 " SuperTab Settings
