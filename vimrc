@@ -318,11 +318,8 @@ nnoremap TR :NERDTreeToggle<CR>
 " Custom NERDCommenter commands
 " ==================================================================
 let NERDSpaceDelims=1
-
-" ==================================================================
-" SuperTab Settings
-" ==================================================================
-"let g:SuperTabDefaultCompletionType = "context"
+let NERDCommentWholeLinesInVMode=2 " whole lines commented out when there is no multipart delimiters but 
+                                   " EXACT text that was selected is commented out if there IS multipart delimiters
 
 " ==================================================================
 " C/C++ Section

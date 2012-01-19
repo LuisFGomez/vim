@@ -1530,6 +1530,10 @@ function! s:CloseWindow()
             " Other windows are open, only close the tagbar one
             close
             wincmd p
+            if bufname("%") == "-MiniBufExplorer-"
+                let winnum = bufwinnr("#")
+                exe winnum . ' wincmd w'
+            endif
         endif
     else
         " Go to the tagbar window, close it and then come back to the
