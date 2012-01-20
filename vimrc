@@ -302,8 +302,6 @@ let g:tagbar_autoclose=1
 " Map Ctrl-h, Ctrl-l to move left/right between buffers
 nnoremap <silent> <C-l> :bn<CR>
 nnoremap <silent> <C-h> :bp<CR>
-" Delete the current buffer with ctrl-c
-nnoremap <silent> <C-c> :bd<CR>
 " <,,b> toggles minibufexplorer
 map <Leader>b :TMiniBufExplorer<cr>
 
@@ -313,6 +311,8 @@ let g:miniBufExplorerMoreThanOne = 2 " Don't start minibufexpl till 2 or more wi
 let g:miniBufExplUseSingleClick = 1
 let g:miniBufExplSplitBelow=0        " Open minibuf above/left of current window
 let g:miniBufExplMaxSize=3           " Maximum size in lines
+let g:miniBufExplCheckDupeBufs = 0   " Editing near 10+ buffers slows switching, so add this
+
 
 " ==================================================================
 " Custom NERDTree commands

@@ -866,9 +866,12 @@ function! s:Project(filename) " <<<
     "   Load all files in a project
     function! s:LoadAll(recurse, line)
         let b:loadcount=0
+        let g:thisbufname = bufname('%') "LG
         function! s:SpawnExec(infoline, fname, lineno, data)
             if s:OpenEntry2(a:lineno, a:infoline, a:fname, 'e')
-                wincmd p
+                "LG plugins like minibufexplorer change the behavior of 'wincmd p'
+                " reverting to the buffer by name appears to be more reliable
+                exe bufwinnr(g:thisbufname) . 'wincmd w'
                 let b:loadcount=b:loadcount+1
                 echon b:loadcount."\r"
                 if getchar(0) != 0
@@ -1275,15 +1278,23 @@ endif
 if !exists("*<SID>DoToggleProject()") "<<<
     function! s:DoToggleProject()
         if !exists('g:proj_running') || bufwinnr(g:proj_running) == -1
+            let s:proj_mybufname = bufname("%") "set the last accessed window before Project
+            "echo "Entering project. last-accessed bufname is " . s:proj_mybufname
             Project
         else
-            let g:proj_mywindow = winnr()
+            if winnr() != bufwinnr(g:proj_running)
+                " Project is NOT being toggled off from project window itself
+                let s:proj_mybufname = bufname("%")
+                "echo "Toggling OFF from buffer: " . s:proj_mybufname
+            endif
+            let g:proj_mywindow = bufwinnr(s:proj_mybufname)
             Project
             hide
-            if(winnr() != g:proj_mywindow)
-                wincmd p
-            endif
+            let newwinnr = bufwinnr(s:proj_mybufname)
+            exe newwinnr . 'wincmd w'
             unlet g:proj_mywindow
+            unlet s:proj_mybufname "LG
+            unlet newwinnr
         endif
     endfunction
 endif ">>>

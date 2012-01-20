@@ -73,6 +73,7 @@ if s:ftype_out !~# 'detection:ON'
 endif
 unlet s:ftype_out
 
+let s:bufbeforetagbar = ""
 let s:icon_closed = g:tagbar_iconchars[0]
 let s:icon_open   = g:tagbar_iconchars[1]
 
@@ -1410,6 +1411,7 @@ function! s:OpenWindow(flags)
     let autofocus = a:flags =~# 'f'
     let jump      = a:flags =~# 'j'
     let autoclose = a:flags =~# 'c'
+    let curbufname = bufname("%")
 
     " If the tagbar window is already open check jump flag
     " Also set the autoclose flag if requested
@@ -1442,11 +1444,13 @@ function! s:OpenWindow(flags)
 
     call s:InitWindow(autoclose)
 
-    wincmd p
+    exe bufwinnr(curbufname) . 'wincmd w'
 
     " Jump back to the tagbar window if autoclose or autofocus is set. Can't
     " just stay in it since it wouldn't trigger the update event
     if g:tagbar_autoclose || autofocus || g:tagbar_autofocus
+        "globally save the name of buffer before we jump back to tagbar
+        let s:bufbeforetagbar = curbufname
         let tagbarwinnr = bufwinnr('__Tagbar__')
         execute tagbarwinnr . 'wincmd w'
     endif
@@ -1529,10 +1533,10 @@ function! s:CloseWindow()
         if winbufnr(2) != -1
             " Other windows are open, only close the tagbar one
             close
-            wincmd p
-            if bufname("%") == "-MiniBufExplorer-"
-                let winnum = bufwinnr("#")
-                exe winnum . ' wincmd w'
+            " s:bufbeforetagbar is set in OpenWindow()
+            if !empty(s:bufbeforetagbar)
+                exe bufwinnr(s:bufbeforetagbar) . 'wincmd w'
+                let s:bufbeforetagbar = ''
             endif
         endif
     else
