@@ -254,7 +254,7 @@ autocmd! FileType qf wincmd J
 " g: map <F12> to toggle project window open/close
 " t: toggle size of window with spacebar, rather than increase
 " c: automatically close when a file is selected
-let g:proj_flags="isgtc"
+let g:proj_flags="isgt"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => cscope options

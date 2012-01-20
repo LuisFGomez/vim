@@ -192,6 +192,11 @@ function! s:Project(filename) " <<<
         call s:DoSetup()                " Ensure that all the settings are right
         let n = winnr()                 " Determine if there is a CTRL_W-p window
         silent! wincmd p
+        " When 2 or more windows are open, minibufexplorer makes wincmd p jump to it - annoying
+        if bufname("%") == "-MiniBufExplorer-"
+            let winnum = bufwinnr("#")
+            exe winnum . ' wincmd w'
+        endif
         if n == winnr()
             silent! wincmd l
         endif
@@ -1181,7 +1186,8 @@ function! s:Project(filename) " <<<
         nmap     <buffer> <silent> <LocalLeader>o <C-Return>
         nnoremap <buffer> <silent> <LocalLeader>i :echo <SID>RecursivelyConstructDirectives(line('.'))<CR>
         nnoremap <buffer> <silent> <LocalLeader>I :echo Project_GetFname(line('.'))<CR>
-        nmap     <buffer> <silent> <M-CR> <Return><C-W>p
+        "LUIS nmap     <buffer> <silent> <M-CR> <Return><C-W>p
+        nmap     <buffer> <silent> <M-CR> :let tmpname=bufname('%')<CR><CR>:let newnum=bufwinnr(tmpname)<CR>:exe newnum . 'wincmd w'<CR>
         nmap     <buffer> <silent> <LocalLeader>v <M-CR>
         nnoremap <buffer> <silent> <LocalLeader>l \|:call <SID>LoadAll(0, line('.'))<CR>
         nnoremap <buffer> <silent> <LocalLeader>L \|:call <SID>LoadAll(1, line('.'))<CR>
