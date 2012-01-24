@@ -40,7 +40,7 @@ nmap <leader>w :w!<cr>
 map <leader>e :e! ~/.vim/vimrc<cr>
 
 " When vimrc is edited, reload it
-"autocmd! bufwritepost vimrc source ~/.vim_runtime/vimrc
+" autocmd! bufwritepost vimrc source ~/.vim_runtime/vimrc
 autocmd! bufwritepost vimrc source ~/.vim/vimrc
 
 " Turn on line numbers:
@@ -67,18 +67,13 @@ endif
 
 if has("gui_running")
 	set guioptions-=T
-	set background=dark
-	set t_Co=256
-	set background=dark
-	colorscheme peaksea
-
-	set nu
-else
-	colorscheme zellner
-	set background=dark
-
-	set nonu
 endif
+
+"LG make these setting default for console and gui, since
+"   running under gnome-terminal supports all this junk
+set t_Co=256
+set bg=dark
+colorscheme herald
 
 set encoding=utf8
 try
@@ -88,6 +83,8 @@ endtry
 
 set ffs=unix,dos,mac "Default file types
 
+set cul "Highlight the cursor line
+set cuc "Highlight the cursor column
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
