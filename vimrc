@@ -37,11 +37,11 @@ let g:mapleader = ","
 nmap <leader>w :w!<cr>
 
 " Fast editing of the .vimrc
-map <leader>e :e! ~/.vim_runtime/vimrc<cr>
+map <leader>e :e! ~/.vim/vimrc<cr>
 
 " When vimrc is edited, reload it
 "autocmd! bufwritepost vimrc source ~/.vim_runtime/vimrc
-autocmd! bufwritepost vimrc source %
+autocmd! bufwritepost vimrc source ~/.vim/vimrc
 
 " Turn on line numbers:
 set number
@@ -118,6 +118,9 @@ if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
     \| exe "normal! g'\"" | endif
 endif
+
+" Clear all the search highlight terms
+nnoremap <leader>/ :noh<CR>
 
 " ==================================================================
 " Insert blank lines above, below without changing cursor (ranges allowed)
@@ -255,6 +258,7 @@ autocmd! FileType qf wincmd J
 " t: toggle size of window with spacebar, rather than increase
 " c: automatically close when a file is selected
 let g:proj_flags="isgt"
+nmap <silent> TP <Plug>ToggleProject
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => cscope options
@@ -303,7 +307,7 @@ let g:tagbar_autoclose=1
 nnoremap <silent> <C-l> :bn<CR>
 nnoremap <silent> <C-h> :bp<CR>
 " <,,b> toggles minibufexplorer
-map <Leader>b :TMiniBufExplorer<cr>
+nnoremap TB :TMiniBufExplorer<cr>
 
 let g:miniBufExplModSelTarget = 1    " Dont put new windows in non-modifiable
                                      " buffers.
