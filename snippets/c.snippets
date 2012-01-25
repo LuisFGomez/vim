@@ -6,37 +6,36 @@ snippet main
 		return 0;
 	}
 # #include <...>
-snippet inc
+snippet inc<
 	#include <${1:stdio}.h>${2}
 # #include "..."
-snippet Inc
+snippet inc"
 	#include "${1:`Filename("$1.h")`}"${2}
 # #ifndef ... #define ... #endif
-snippet Def
-	#ifndef $1
-	#define ${1:SYMBOL} ${2:value}
-	#endif${3}
+snippet ifndef
+	#ifndef ${1:SYMBOL}
+	#define $1 ${2:value}
+	#endif /* $1 */${3}
 snippet def
 	#define 
 snippet ifdef
 	#ifdef ${1:FOO}
 		${2:#define }
-	#endif
+	#endif /* $1 */
 snippet #if
 	#if ${1:FOO}
 		${2}
-	#endif
+	#endif /* $1 */
 # Header Include-Guard
 # (the randomizer code is taken directly from TextMate; it could probably be
 # cleaner, I don't know how to do it in vim script)
-snippet once
-	#ifndef ${1:`toupper(Filename('', 'UNTITLED').'_'.system("/usr/bin/ruby -e 'print (rand * 2821109907455).round.to_s(36)'"))`}
-
-	#define $1
+snippet guard
+	#ifndef ${1:FOOBAR}_H_
+	#define $1_H_
 
 	${2}
 
-	#endif /* end of include guard: $1 */
+	#endif /* $1_H_ */
 # If Condition
 snippet if
 	if (${1:/* condition */}) {
@@ -48,7 +47,7 @@ snippet el
 	}
 # Tertiary conditional
 snippet t
-	${1:/* condition */} ? ${2:a} : ${3:b}
+	(${1:/* condition */}) ? ${2:a} : ${3:b};${4}
 # Do While Loop
 snippet do
 	do {
@@ -61,7 +60,7 @@ snippet wh
 	}
 # For Loop
 snippet for
-	for (${2:i} = 0; $2 < ${1:count}; $2${3:++}) {
+	for (${2:i}=0; $2<${1:count}; $2${3:++}) {
 		${4:/* code */}
 	}
 # Custom For Loop
@@ -104,7 +103,56 @@ snippet pr
 # fprintf (again, this isn't as nice as TextMate's version, but it works)
 snippet fpr
 	fprintf(${1:stderr}, "${2:%s}\n"${3});${4}
-snippet .
-	[${1}]${2}
+#snippet .
+#	[${1}]${2}
 snippet un
 	unsigned
+
+#define a block of C in 
+snippet _cpp
+	#ifdef __cplusplus
+	extern "C" {
+	
+	${1}
+
+	} /* __cplusplus */
+
+#Printf a line for logging purposes
+snippet printl
+	${1:printf}(${2:OPT_PARAM_OR_FILE, }"%s: %d: ${3:Message goes here}\n",
+		__func__, __line__${4:, opt_args});${5:}
+
+# A one-liner comment blocks
+snippet cb*
+	/*********************************************************
+	 *    ${1:This is a nice comment box}
+	 ********************************************************/${2}
+
+snippet cb=
+	/*========================================================
+	 *    ${1:This is a nice comment box}
+	 *======================================================*/${2}
+
+snippet cb-
+	/*--------------------------------------------------------
+	 *    ${1:This is a nice comment box}
+	 *------------------------------------------------------*/${2}
+
+snippet cb/
+	//////////////////////////////////////////////////////////
+	//    ${1:This is a nice comment box}
+	//////////////////////////////////////////////////////////
+	${2}
+
+snippet c4filedoc
+	/*****************************************************************************
+	*
+	* @file     ${1:`Filename('', 'foobar.c')`}
+	* @brief    ${2:Brief Description of what this module does}
+	* @section  Platforms Platform(s)
+	*           ${3:LM3S6965 Atmega128}
+	* @section  Copyright Copyright
+	*           (c) Copyright 2011 Control4, Inc. All rights reserved.
+	*
+	******************************************************************************/
+	${4}
