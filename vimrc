@@ -29,15 +29,18 @@ filetype indent on
 set autoread
 
 " With a map leader it's possible to do extra key combinations
-" like <leader>w saves the current file
+" like <Leader>w saves the current file
 let mapleader = ","
 let g:mapleader = ","
 
 " Fast saving
-nmap <leader>w :w!<cr>
+nmap <Leader>w :w!<cr>
+
+" Fast quitting
+nmap <Leader>q :q<cr>
 
 " Fast editing of the .vimrc
-map <leader>e :e! ~/.vim/vimrc<cr>
+map <Leader>e :e! ~/.vim/vimrc<cr>
 
 " When vimrc is edited, reload it
 " autocmd! bufwritepost vimrc source ~/.vim_runtime/vimrc
@@ -117,7 +120,7 @@ if has("autocmd")
 endif
 
 " Clear all the search highlight terms
-nnoremap <leader>/ :noh<CR>
+nnoremap <Leader>/ :noh<CR>
 
 " ==================================================================
 " Insert blank lines above, below without changing cursor (ranges allowed)
@@ -212,7 +215,7 @@ vnoremap <silent> # :call VisualSearch('b')<CR>
 
 " When you press gv you vimgrep after the selected text
 vnoremap <silent> gv :call VisualSearch('gv')<CR>
-map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
+map <Leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
 
 function! CmdLine(str)
 	exe "menu Foo.Bar :" . a:str
@@ -267,14 +270,14 @@ set csprg=gtags-cscope  "make the :cscope command use the gtags-cscope instead.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Wrap stuff around visual text
 " Typing a comma + the punctutation will wrap selection with punctuation
-vnoremap <leader>( <esc>`>a)<esc>`<i(<esc>
-vnoremap <leader>[ <esc>`>a]<esc>`<i[<esc>
-vnoremap <leader>{ <esc>`>a}<esc>`<i{<esc>
-vnoremap <leader>< <esc>`>a><esc>`<i<<esc>
-vnoremap <leader>' <esc>`>a'<esc>`<i'<esc>
-vnoremap <leader>" <esc>`>a"<esc>`<i"<esc>
-vnoremap <leader><space> <esc>`>a<space><esc>`<i<space><esc>
-nnoremap <leader><space> i<space><esc>la<space><esc>l
+vnoremap <Leader>( <esc>`>a)<esc>`<i(<esc>
+vnoremap <Leader>[ <esc>`>a]<esc>`<i[<esc>
+vnoremap <Leader>{ <esc>`>a}<esc>`<i{<esc>
+vnoremap <Leader>< <esc>`>a><esc>`<i<<esc>
+vnoremap <Leader>' <esc>`>a'<esc>`<i'<esc>
+vnoremap <Leader>" <esc>`>a"<esc>`<i"<esc>
+vnoremap <Leader><space> <esc>`>a<space><esc>`<i<space><esc>
+nnoremap <Leader><space> i<space><esc>la<space><esc>l
 " This bad boy will let you wrap a visual selection with a {, but with a twist:
 "   it will place a newline before both the opening and closing brace
 "   all lines are also reindented to make them pretty
@@ -323,7 +326,7 @@ nnoremap TR :NERDTreeToggle<CR>
 " ==================================================================
 " Custom NERDCommenter commands
 " ==================================================================
-let NERDSpaceDelims=1
+let NERDSpaceDelims=1 " Add 1 space between each left/right comment delimiter
 let NERDCommentWholeLinesInVMode=2 " whole lines commented out when there is no multipart delimiters but 
                                    " EXACT text that was selected is commented out if there IS multipart delimiters
 
@@ -344,20 +347,8 @@ au FileType python syn keyword pythonDecorator True None False self
 
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 
-au FileType python inoremap <buffer> $r return 
-au FileType python inoremap <buffer> $i import 
-au FileType python inoremap <buffer> $p print 
-au FileType python inoremap <buffer> $f #--- PH ----------------------------------------------<esc>FP2xi
-" Search for 'class xxx' and 'def xxx'
-au FileType python map <buffer> <leader>1 /class 
-au FileType python map <buffer> <leader>2 /def 
-au FileType python map <buffer> <leader>C ?class 
-au FileType python map <buffer> <leader>D ?def 
-
-" Use pysmell tags for omnicomplete
-autocmd FileType python set omnifunc=pythoncomplete#Complete
 " Prevent from inserting first match
-set completeopt+=longest
+set completeopt=menuone,preview,longest
 " Ctrl-Space launches omnicomplete
 inoremap <Nul> <C-x><C-o>
 
