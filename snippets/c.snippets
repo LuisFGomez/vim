@@ -119,8 +119,8 @@ snippet _cpp
 
 #Printf a line for logging purposes
 snippet printl
-	${1:printf}(${2:OPT_PARAM_OR_FILE, }"%s: %d: ${3:Message goes here}\n",
-		__func__, __line__${4:, opt_args});${5:}
+	${1:printf}(${2:OPT_PARAM_OR_FILE, }"%s: ${3:Message goes here}",
+			__func__${4:, opt_args});${5}
 
 # A one-liner comment blocks
 snippet cb*
