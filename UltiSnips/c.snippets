@@ -1,25 +1,43 @@
 global !p
 
+import re
+
+def extract_function_stuff(text):
+    ''' Extract the function name from a line of C code
+
+    returns a tuple of type:
+        (function return type, function name, function args)
+    '''
+    matchObj = re.search(r'([0-9A-Za-z_*]+ [*]*)([_0-9a-zA-Z]+)\((.*)\)', text)
+    if matchObj is None: 
+        return ('','','')
+    funRetType = matchObj.group(1)
+    funName = matchObj.group(2)
+    funArgs = matchObj.group(3)
+    return (funRetType, funName, funArgs)
+
 def parse_c_args(text):
-    """ Return list of names from text inside c-func parentheses
-    """
+    ''' Return list of names from text inside c-func parentheses
+    '''
     if text is 'void':
         return ''
     splitList = text.split(',')
     nameList = []
     for i in splitList:
-        nameList.append(i.split(' ')[-1].strip('*'))
+        nameList.append(i.split(' ')[-1].strip('*[]'))
     return nameList
 
 def get_doxy_arg_docs(argList):
-    """ Convert a list of c-func argument names to string of doxygen @param tags
-    """
+    ''' Convert a list of c-func argument names to string of doxygen @param tags
+    '''
     retStr = ''
     if argList is '':
         retStr += ''
         return retStr
+    longest = max([len(i) for i in argList]) # Find longest-len arg
     for i in argList:
-        retStr += '\n @param    %s - @todo: description of %s' % (i,i)
+        i += ' ' * (longest - len(i)) # Pad with space to match longest
+        retStr += '\n @param    %s - @todo: add description of %s' % (i,i)
     return retStr
 
 endglobal
@@ -122,7 +140,7 @@ struct ${1:`!p snip.rv = (snip.basename or "name") + "_t"`}
 };
 endsnippet
 
-snippet c4 "function with doxy documentation" b
+snippet c4 "create function with doxy documentation" b
 /******************************************************************************
  @fn       $2
 
@@ -151,6 +169,24 @@ ${VISUAL:/* code */}
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */
+endsnippet
+
+snippet c4 "Generate doxy tag from existing C-function" b
+/******************************************************************************
+ @fn       `!p
+(funRet, funName, funArgs) = extract_function_stuff(t[1])
+snip.rv = funName
+`
+
+           ${2:Description of function goes here}
+`!p
+argNames = parse_c_args(funArgs)
+snip.rv = get_doxy_arg_docs(argNames)
+`
+
+ @return   `!p snip.rv = ('void' if funRet == 'void' else '@todo: Describe return for %s' %funName)`
+******************************************************************************/
+${1:${VISUAL}}
 endsnippet
 
 # vim:ft=snippets:

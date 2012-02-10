@@ -128,6 +128,16 @@ nnoremap <Leader>/ :noh<CR>
 map <Leader>O :<C-U>call append(line(".") -1, repeat([''], v:count1))<CR>
 map <Leader>o :<C-U>call append(line("."), repeat([''], v:count1))<CR>
 
+
+" ==================================================================
+" UltiSnips Options
+" ==================================================================
+" Luis: Because the default mapping of <C-j> and <C-k> conflict with
+" moving lines up/down, remap to tab/shift-tab
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+
 " ==================================================================
 " Enable moving lines up/down with CTRL-k/CTRL-j
 " ==================================================================
