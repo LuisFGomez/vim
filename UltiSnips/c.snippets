@@ -8,7 +8,7 @@ def extract_function_stuff(text):
     returns a tuple of type:
         (function return type, function name, function args)
     '''
-    matchObj = re.search(r'([0-9A-Za-z_*]+ [*]*)([_0-9a-zA-Z]+)\((.*)\)', text)
+    matchObj = re.search(r'([0-9A-Za-z_*]+ [*]*)([_0-9a-zA-Z]+)\((.*[\r\n]*.*)\)', text)
     if matchObj is None: 
         return ('','','')
     funRetType = matchObj.group(1)
