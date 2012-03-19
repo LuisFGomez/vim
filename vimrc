@@ -343,8 +343,8 @@ let NERDCommentWholeLinesInVMode=2 " whole lines commented out when there is no 
 " ==================================================================
 " C/C++ Section
 " ==================================================================
-au FileType c,cpp highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-au Filetype c,cpp match OverLength /\%81v.\+/
+" au FileType c,cpp highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+" au Filetype c,cpp match OverLength /\%81v.\+/
 
 " ==================================================================
 " Python Section
