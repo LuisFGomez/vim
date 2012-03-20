@@ -62,7 +62,7 @@ if MySys() == "mac"
 	set gfn=Bitstream\ Vera\ Sans\ Mono:h13
 	set shell=/bin/bash
 elseif MySys() == "windows"
-	set gfn=Bitstream\ Vera\ Sans\ Mono:h10
+	set gfn=Consolas:h11
 elseif MySys() == "linux"
 	set gfn=Monospace\ 10
 	set shell=/bin/bash
@@ -109,10 +109,11 @@ set incsearch 	"Make search act like search in modern browsers
 set magic 		"Set magic on, for regular expressions
 set showmatch 	"Show matching bracets when text indicator is over them
 set mat=2 		"How many tenths of a second to blink
-" No sound on errors
-set noerrorbells
-set novisualbell
-set t_vb=
+
+" Disable annoying screen flash and/or bells when you press 'esc'
+set noerrorbells visualbell t_vb=
+autocmd GUIEnter * set visualbell t_vb=
+
 " Have Vim jump to the last position when reopening a file
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
