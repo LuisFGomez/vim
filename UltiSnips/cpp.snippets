@@ -49,4 +49,48 @@ snippet tp "template <typename ..> (template)"
 template <typename ${1:_InputIter}>
 endsnippet
 
+snippet wx "Insert class header derived from wx Class"
+class ${1:NameOfClass} : public ${2: wxPanel}
+{
+public:
+    $1(${3:wxWindow *parent});
+private:
+    void create_widgets();
+    void set_properties();
+    void attach_events();
+    void do_layout();
+};
+endsnippet
+
+snippet wx "Implement class derived from wx Class"
+${1:NameOfClass}::$1(${3:wxWindow *parent})
+: ${2: wxPanel(parent)}
+{
+    create_widgets();
+    set_properties();
+    attach_events();
+    do_layout();
+}
+
+void $1::create_widgets()
+{
+
+}
+
+void $1::set_properties()
+{
+
+}
+
+void $1::attach_events()
+{
+
+}
+
+void $1::do_layout()
+{
+
+}
+endsnippet
+
 # vim:ft=snippets:
