@@ -51,6 +51,10 @@ set number
 " Toggle line numbers with F2 and fold column for easy copying:
 nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Diff options
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set diffopt=filler,vertical
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
@@ -62,7 +66,8 @@ if MySys() == "mac"
 	set gfn=Bitstream\ Vera\ Sans\ Mono:h13
 	set shell=/bin/bash
 elseif MySys() == "windows"
-	set gfn=Consolas:h11
+    set gfn=Consolas:h9
+    let g:tagbar_ctags_bin="C:/Program Files/Vim/vim73/ctags.exe"
 elseif MySys() == "linux"
 	set gfn=Monospace\ 10
 	set shell=/bin/bash
@@ -76,7 +81,7 @@ endif
 "   running under gnome-terminal supports all this junk
 set t_Co=256
 set bg=dark
-colorscheme herald
+colorscheme desert
 
 set encoding=utf8
 try

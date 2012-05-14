@@ -177,6 +177,12 @@ ${1:void} ${2:function}(${3:void})
 }
 endsnippet
 
+snippet ifdef "wrap some code with #ifdef/#endif" b
+#ifdef ${1:SYMBOL}
+${VISUAL}
+#endif /* $1 */
+endsnippet
+
 snippet cpp "insert c blocks into cpp files" b
 #ifdef __cplusplus
 extern "C" {
@@ -206,6 +212,29 @@ snip.rv = get_doxy_arg_docs(argNames)
 ******************************************************************************/
 ${1:${VISUAL}}
 endsnippet
+
+snippet c4 "Create a doxygen file header" b
+/******************************************************************************
+
+ @file      ${1:`!p snip.rv = snip.fn`}
+
+ @brief     ${2: Module interface to foo}
+
+ @section   Detail Detail
+            
+            ${3:Place the detail of the file here.
+            Detail sections should be, well, detailed!}
+ 
+ @section   Platform Platform(s)
+            ${4:Em35x, LM3SXXX, All}
+
+ @section  Copyright Copyright
+           (c) Copyright 2012 Control4, Inc. All rights reserved.
+
+******************************************************************************/
+endsnippet
+
+
 
 # vim:ft=snippets:
 
