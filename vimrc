@@ -274,7 +274,7 @@ nmap <silent> TP <Plug>ToggleProject
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => cscope options
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set csprg=gtags-cscope  "make the :cscope command use the gtags-cscope instead.
+" set csprg=gtags-cscope  "make the :cscope command use the gtags-cscope instead.
                         " This requires the program 'global' to be installed'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Parenthesis/bracket expanding
