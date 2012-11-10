@@ -66,7 +66,7 @@ if MySys() == "mac"
 	set gfn=Bitstream\ Vera\ Sans\ Mono:h13
 	set shell=/bin/bash
 elseif MySys() == "windows"
-    set gfn=Consolas:h9
+    set gfn=Consolas:h10
     let g:tagbar_ctags_bin="C:/Program Files/Vim/vim73/ctags.exe"
 elseif MySys() == "linux"
 	set gfn=Monospace\ 10
@@ -80,8 +80,8 @@ endif
 "LG make these setting default for console and gui, since
 "   running under gnome-terminal supports all this junk
 set t_Co=256
-set bg=dark
-colorscheme desert
+set bg=light
+colorscheme eclipse
 
 set encoding=utf8
 try
