@@ -62,13 +62,13 @@ set diffopt=filler,vertical
 syntax enable "Enable syntax hl
 
 " Set font according to system
-if MySys() == "mac"
+if has("mac") || has("macunix")
 	set gfn=Bitstream\ Vera\ Sans\ Mono:h13
 	set shell=/bin/bash
-elseif MySys() == "windows"
+elseif has("win16")|| has("win32")
     set gfn=Consolas:h10
     let g:tagbar_ctags_bin="C:/Program Files/Vim/vim73/ctags.exe"
-elseif MySys() == "linux"
+elseif has("linux")
 	set gfn=Monospace\ 10
 	set shell=/bin/bash
 endif
@@ -80,8 +80,7 @@ endif
 "LG make these setting default for console and gui, since
 "   running under gnome-terminal supports all this junk
 set t_Co=256
-set bg=light
-colorscheme eclipse
+colorscheme desert
 
 set encoding=utf8
 try
@@ -91,13 +90,13 @@ endtry
 
 set ffs=unix,dos,mac "Default file types
 
-set cul "Highlight the cursor line
-set cuc "Highlight the cursor column
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Set 10 lines of scroll space when scrolling
-set so=10
+
+"set cul        "Highlight the cursor line
+"set cuc        "Highlight the cursor column
+set so=10       " Set 10 lines of scroll space when scrolling
 set wildmenu 	"Turn on WiLd menu
 set mouse=a		" Enable mouse usage (all modes) in terminals
 set ruler 		"Always show current position
@@ -150,21 +149,17 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 function! MoveLineUp()
     call MoveLineOrVisualUp(".", "")
 endfunction
-
 function! MoveLineDown()
     call MoveLineOrVisualDown(".", "")
 endfunction
-
 function! MoveVisualUp()
     call MoveLineOrVisualUp("'<", "'<,'>")
     normal gv
 endfunction
-
 function! MoveVisualDown()
     call MoveLineOrVisualDown("'>", "'<,'>")
     normal gv
 endfunction
-
 function! MoveLineOrVisualUp(line_getter, range)
     let l_num = line(a:line_getter)
     if l_num - v:count1 - 1 < 0
@@ -174,7 +169,6 @@ function! MoveLineOrVisualUp(line_getter, range)
     endif
     call MoveLineOrVisualUpOrDown(a:range."move ".move_arg)
 endfunction
-
 function! MoveLineOrVisualDown(line_getter, range)
     let l_num = line(a:line_getter)
     if l_num + v:count1 > line("$")
@@ -184,13 +178,11 @@ function! MoveLineOrVisualDown(line_getter, range)
     endif
     call MoveLineOrVisualUpOrDown(a:range."move ".move_arg)
 endfunction
-
 function! MoveLineOrVisualUpOrDown(move_arg)
     let col_num = virtcol(".")
     execute "silent! ".a:move_arg
     execute "normal! ".col_num."|"
 endfunction
-
 nnoremap <silent> <C-k> :<C-u>call MoveLineUp()<CR>
 nnoremap <silent> <C-j> :<C-u>call MoveLineDown()<CR>
 inoremap <silent> <C-k> <C-o>:<C-u>call MoveLineUp()<CR>
@@ -203,12 +195,9 @@ vnoremap <silent> <C-j> :<C-u>call MoveVisualDown()<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set shiftwidth=4
 set tabstop=4
-"set smarttab
 set expandtab
-
 set lbr
 set tw=500
-
 set ai "Auto indent
 set nosmartindent " NO Smart indent
 set wrap "Wrap lines
@@ -224,29 +213,25 @@ set noswapfile
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Visual mode related
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Really useful!
-"  In visual mode when you press * or # to search for the current selection
-vnoremap <silent> * :call VisualSearch('f')<CR>
-vnoremap <silent> # :call VisualSearch('b')<CR>
 
 " When you press gv you vimgrep after the selected text
 vnoremap <silent> gv :call VisualSearch('gv')<CR>
 map <Leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
 
+" In visual mode when you press * or #, search for the current selection
+" From an idea by Michael Naumann
+vnoremap <silent> * :call VisualSearch('f')<CR>
+vnoremap <silent> # :call VisualSearch('b')<CR>
 function! CmdLine(str)
 	exe "menu Foo.Bar :" . a:str
 	emenu Foo.Bar
 	unmenu Foo
 endfunction 
-
-" From an idea by Michael Naumann
 function! VisualSearch(direction) range
 	let l:saved_reg = @"
 	execute "normal! vgvy"
-
 	let l:pattern = escape(@", '\\/.*$^~[]')
 	let l:pattern = substitute(l:pattern, "\n$", "", "")
-
 	if a:direction == 'b'
 		execute "normal ?" . l:pattern . "^M"
 	elseif a:direction == 'gv'
@@ -254,7 +239,6 @@ function! VisualSearch(direction) range
 	elseif a:direction == 'f'
 		execute "normal /" . l:pattern . "^M"
 	endif
-
 	let @/ = l:pattern
 	let @" = l:saved_reg
 endfunction
@@ -281,6 +265,7 @@ nmap <silent> TP <Plug>ToggleProject
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " set csprg=gtags-cscope  "make the :cscope command use the gtags-cscope instead.
                         " This requires the program 'global' to be installed'
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Parenthesis/bracket expanding
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -324,15 +309,12 @@ nnoremap <silent> <C-l> :bn<CR>
 nnoremap <silent> <C-h> :bp<CR>
 " <,,b> toggles minibufexplorer
 nnoremap TB :TMiniBufExplorer<cr>
-
 let g:miniBufExplModSelTarget = 1    " Dont put new windows in non-modifiable
-                                     " buffers.
 let g:miniBufExplorerMoreThanOne = 2 " Don't start minibufexpl till 2 or more windows
 let g:miniBufExplUseSingleClick = 1
 let g:miniBufExplSplitBelow=0        " Open minibuf above/left of current window
 let g:miniBufExplMaxSize=3           " Maximum size in lines
 let g:miniBufExplCheckDupeBufs = 0   " Editing near 10+ buffers slows switching, so add this
-
 
 " ==================================================================
 " Custom NERDTree commands
@@ -360,9 +342,7 @@ au FileType python highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 au FileType python match OverLength /\%81v.\+/
 let python_highlight_all = 1
 au FileType python syn keyword pythonDecorator True None False self
-
 autocmd FileType python set omnifunc=pythoncomplete#Complete
-
 " Prevent from inserting first match
 set completeopt=menuone,preview,longest
 " Ctrl-Space launches omnicomplete
