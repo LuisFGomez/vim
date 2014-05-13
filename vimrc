@@ -66,8 +66,9 @@ if has("mac") || has("macunix")
 	set gfn=Bitstream\ Vera\ Sans\ Mono:h13
 	set shell=/bin/bash
 elseif has("win16")|| has("win32")
+    let &runtimepath.=',$HOME/.vim'
     set gfn=Consolas:h10
-    let g:tagbar_ctags_bin="C:/Program Files/Vim/vim73/ctags.exe"
+    let g:tagbar_ctags_bin="$HOME/.vim/exe/ctags.exe"
 elseif has("linux")
 	set gfn=Monospace\ 10
 	set shell=/bin/bash
