@@ -75,6 +75,7 @@ elseif has("linux")
 endif
 
 if has("gui_running")
+    set lines=2000 columns=2000 " maximize gvim window on startup
 	set guioptions-=T
 endif
 
