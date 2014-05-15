@@ -358,4 +358,16 @@ inoremap <Nul> <C-x><C-o>
 "au BufWinLeave * mkview
 "au BufWinEnter * silent loadview
 
+" ==================================================================
+" Strip trailing whitespace on save
+" ==================================================================
+
+fun! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
+" TODO: move these into file-specific vimscripts
+autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
