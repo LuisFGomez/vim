@@ -297,6 +297,8 @@ map TL <Plug>TaskList
 " ==================================================================
 " Shorter commands to toggle Taglist display
 nnoremap TT :TagbarToggle<CR>
+let g:tagbar_compact=1 " save screen real estate
+let g:tagbar_sort=0
 " let g:tagbar_singleclick=1
 " let g:tagbar_autoclose=1
 
