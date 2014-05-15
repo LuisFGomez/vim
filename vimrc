@@ -284,7 +284,7 @@ nnoremap <Leader><space> i<space><esc>la<space><esc>l
 " This bad boy will let you wrap a visual selection with a {, but with a twist:
 "   it will place a newline before both the opening and closing brace
 "   all lines are also reindented to make them pretty
-vnoremap ,.{ <esc>`>a<cr>}<esc>`<i{<cr><esc>gvj=
+vnoremap <Leader>.{ <esc>`>a<cr>}<esc>`<i{<cr><esc>gvjj=
 
 " ==================================================================
 " TaskList Options
