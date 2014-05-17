@@ -371,3 +371,8 @@ endfun
 " TODO: move these into file-specific vimscripts
 autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
+" ==================================================================
+" Strip all '^M' characters (for files with mixed dos/unix line endings
+" ==================================================================
+command! StripCR %s/\%x0d$//g
+
