@@ -303,24 +303,6 @@ let g:tagbar_sort=0
 " let g:tagbar_autoclose=1
 
 " ==================================================================
-" MinibufExplorer Plugin
-" ==================================================================
-"let g:miniBufExplMapWindowNavVim = 1 
-"let g:miniBufExplMapWindowNavArrows = 1 " Use CTL-arrows to move between windows
-"let g:miniBufExplMapCTabSwitchBufs = 1 
-" Map Ctrl-h, Ctrl-l to move left/right between buffers
-nnoremap <silent> <C-l> :bn<CR>
-nnoremap <silent> <C-h> :bp<CR>
-" <,,b> toggles minibufexplorer
-nnoremap TB :TMiniBufExplorer<cr>
-let g:miniBufExplModSelTarget = 1    " Dont put new windows in non-modifiable
-let g:miniBufExplorerMoreThanOne = 2 " Don't start minibufexpl till 2 or more windows
-let g:miniBufExplUseSingleClick = 1
-let g:miniBufExplSplitBelow=0        " Open minibuf above/left of current window
-let g:miniBufExplMaxSize=3           " Maximum size in lines
-let g:miniBufExplCheckDupeBufs = 0   " Editing near 10+ buffers slows switching, so add this
-
-" ==================================================================
 " Custom NERDCommenter commands
 " ==================================================================
 let NERDSpaceDelims=1 " Add 1 space between each left/right comment delimiter
