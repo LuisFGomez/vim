@@ -321,11 +321,6 @@ let g:miniBufExplMaxSize=3           " Maximum size in lines
 let g:miniBufExplCheckDupeBufs = 0   " Editing near 10+ buffers slows switching, so add this
 
 " ==================================================================
-" Custom NERDTree commands
-" ==================================================================
-nnoremap TR :NERDTreeToggle<CR>
-
-" ==================================================================
 " Custom NERDCommenter commands
 " ==================================================================
 let NERDSpaceDelims=1 " Add 1 space between each left/right comment delimiter
