@@ -353,3 +353,8 @@ autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <
 " ==================================================================
 command! StripCR %s/\%x0d$//g
 
+" ==================================================================
+" Move text from cursor onward to next line
+" ==================================================================
+nnoremap <Leader><CR> i<CR><Esc>l
+
