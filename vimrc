@@ -355,6 +355,12 @@ autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <
 command! StripCR %s/\%x0d$//g
 
 " ==================================================================
+" Toggle showing tabs/spaces/eol characters
+" ==================================================================
+nnoremap <Leader>l :set list!<CR>
+set listchars=tab:▸\ ,eol:¬
+
+" ==================================================================
 " Move text from cursor onward to next line
 " ==================================================================
 nnoremap <Leader><CR> i<CR><Esc>l
