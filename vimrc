@@ -69,6 +69,7 @@ elseif has("win16")|| has("win32")
     let &runtimepath.=',~/.vim'
     set gfn=Consolas:h10
     let g:tagbar_ctags_bin="~/.vim/exe/ctags.exe"
+    set ffs=dos,unix
 elseif has("linux")
 	set gfn=Monospace\ 10
 	set shell=/bin/bash
