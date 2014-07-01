@@ -366,3 +366,7 @@ set listchars=tab:»\ ,trail:·
 " ==================================================================
 nnoremap <Leader><CR> i<CR><Esc>l
 
+" ==================================================================
+" Index source code at current directory
+" ==================================================================
+command! Index execute '!' . expand(g:tagbar_ctags_bin) . ' -R'
