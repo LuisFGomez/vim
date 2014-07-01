@@ -369,4 +369,11 @@ nnoremap <Leader><CR> i<CR><Esc>l
 " ==================================================================
 " Index source code at current directory
 " ==================================================================
-command! Index execute '!' . expand(g:tagbar_ctags_bin) . ' -R'
+fun! ExecCtagsRecursive()
+    if !exists("g:tagbar_ctags_bin")
+        execute '!ctags -R .'
+    else
+        execute '!' . expand(g:tagbar_ctags_bin) . ' -R'
+    endif
+endfun
+command! Index call ExecCtagsRecursive()
