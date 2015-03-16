@@ -63,21 +63,21 @@ syntax enable "Enable syntax hl
 
 " Set font according to system
 if has("mac") || has("macunix")
-	set gfn=Bitstream\ Vera\ Sans\ Mono:h13
-	set shell=/bin/bash
-elseif has("win16")|| has("win32")
-    let &runtimepath.=',~/.vim'
+    set gfn=Bitstream\ Vera\ Sans\ Mono:h13
+    set shell=/bin/bash
+elseif has("win16") || has("win32") || has("win64")
+    set runtimepath=~/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,~/.vim/after
     set gfn=Consolas:h10
     let g:tagbar_ctags_bin="~/.vim/exe/ctags.exe"
     set ffs=dos,unix
 elseif has("linux")
-	set gfn=Monospace\ 10
-	set shell=/bin/bash
+    set gfn=Monospace\ 10
+    set shell=/bin/bash
 endif
 
 if has("gui_running")
     set lines=2000 columns=2000 " maximize gvim window on startup
-	set guioptions-=T
+    set guioptions-=T
 endif
 
 "LG make these setting default for console and gui, since
@@ -87,7 +87,7 @@ colorscheme desert
 
 set encoding=utf8
 try
-	lang en_US
+    lang en_US
 catch
 endtry
 
@@ -100,22 +100,22 @@ set ffs=unix,dos,mac "Default file types
 "set cul        "Highlight the cursor line
 "set cuc        "Highlight the cursor column
 set so=10       " Set 10 lines of scroll space when scrolling
-set wildmenu 	"Turn on WiLd menu
-set mouse=a		" Enable mouse usage (all modes) in terminals
-set ruler 		"Always show current position
+set wildmenu    "Turn on WiLd menu
+set mouse=a     " Enable mouse usage (all modes) in terminals
+set ruler       "Always show current position
 set cmdheight=2 "The commandbar height
-set hid 		"Change buffer - without saving
+set hid         "Change buffer - without saving
 " Set backspace config
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
 "set ignorecase "Ignore case when searching
-set smartcase 	"Smart case matching
-set showcmd		" Show (partial) command in status line.
-set hlsearch 	"Highlight search things
-set incsearch 	"Make search act like search in modern browsers
-set magic 		"Set magic on, for regular expressions
-set showmatch 	"Show matching bracets when text indicator is over them
-set mat=2 		"How many tenths of a second to blink
+set smartcase   "Smart case matching
+set showcmd     " Show (partial) command in status line.
+set hlsearch    "Highlight search things
+set incsearch   "Make search act like search in modern browsers
+set magic       "Set magic on, for regular expressions
+set showmatch   "Show matching bracets when text indicator is over them
+set mat=2       "How many tenths of a second to blink
 
 " Disable annoying screen flash and/or bells when you press 'esc'
 set noerrorbells visualbell t_vb=
@@ -226,24 +226,24 @@ map <Leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
 vnoremap <silent> * :call VisualSearch('f')<CR>
 vnoremap <silent> # :call VisualSearch('b')<CR>
 function! CmdLine(str)
-	exe "menu Foo.Bar :" . a:str
-	emenu Foo.Bar
-	unmenu Foo
+    exe "menu Foo.Bar :" . a:str
+    emenu Foo.Bar
+    unmenu Foo
 endfunction 
 function! VisualSearch(direction) range
-	let l:saved_reg = @"
-	execute "normal! vgvy"
-	let l:pattern = escape(@", '\\/.*$^~[]')
-	let l:pattern = substitute(l:pattern, "\n$", "", "")
-	if a:direction == 'b'
-		execute "normal ?" . l:pattern . "^M"
-	elseif a:direction == 'gv'
-		call CmdLine("vimgrep " . '/'. l:pattern . '/' . ' **/*.')
-	elseif a:direction == 'f'
-		execute "normal /" . l:pattern . "^M"
-	endif
-	let @/ = l:pattern
-	let @" = l:saved_reg
+    let l:saved_reg = @"
+    execute "normal! vgvy"
+    let l:pattern = escape(@", '\\/.*$^~[]')
+    let l:pattern = substitute(l:pattern, "\n$", "", "")
+    if a:direction == 'b'
+        execute "normal ?" . l:pattern . "^M"
+    elseif a:direction == 'gv'
+        call CmdLine("vimgrep " . '/'. l:pattern . '/' . ' **/*.')
+    elseif a:direction == 'f'
+        execute "normal /" . l:pattern . "^M"
+    endif
+    let @/ = l:pattern
+    let @" = l:saved_reg
 endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
