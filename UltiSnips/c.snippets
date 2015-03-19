@@ -159,21 +159,21 @@ snippet /**
 endsnippet
 
 snippet c4 "create function with doxy documentation" b
-/******************************************************************************
- @fn       $2
-
-           ${4:Description of function goes here}
-`!p
+/**
+ * @fn      $2
+ *
+ *          ${4:Description of function goes here}
+ `!p
 argNames = parse_c_args(t[3])
 snip.rv = get_doxy_arg_docs(argNames)
 `
-
- @return   `!p snip.rv = ('void' if t[1] == 'void' else '@todo: Describe return value') `
-******************************************************************************/
+ *
+ * @return   `!p snip.rv = ('void' if t[1] == 'void' else '@todo: Describe return value') `
+ */
 
 ${1:void} ${2:function}(${3:void})
 {
-	${0}
+    ${0}
 }
 endsnippet
 
@@ -196,42 +196,29 @@ ${VISUAL:/* code */}
 endsnippet
 
 snippet c4 "Generate doxy tag from existing C-function" b
-/******************************************************************************
- @fn       `!p
+/**
+ * @fn      `!p
 (funRet, funName, funArgs) = extract_function_stuff(t[1])
 snip.rv = funName
 `
-
-           ${2:Description of function goes here}
-`!p
+ *
+ *          ${2:Description of function goes here}
+ * `!p
 argNames = parse_c_args(funArgs)
 snip.rv = get_doxy_arg_docs(argNames)
 `
-
- @return   `!p snip.rv = ('void' if funRet == 'void' else '@todo: Describe return for %s' %funName)`
-******************************************************************************/
+ *
+ * @return   `!p snip.rv = ('void' if funRet == 'void' else '@todo: Describe return for %s' %funName)`
+ */
 ${1:${VISUAL}}
 endsnippet
 
 snippet c4 "Create a doxygen file header" b
-/******************************************************************************
-
- @file      ${1:`!p snip.rv = snip.fn`}
-
- @brief     ${2: Module interface to foo}
-
- @section   Detail Detail
-            
-            ${3:Place the detail of the file here.
-            Detail sections should be, well, detailed!}
- 
- @section   Platform Platform(s)
-            ${4:Em35x, LM3SXXX, All}
-
- @section  Copyright Copyright
-           (c) Copyright 2012 Control4, Inc. All rights reserved.
-
-******************************************************************************/
+/**
+ * @file        ${1:`!p snip.rv = snip.fn`}
+ * @brief       ${2:File description goes here}
+ * @copyright   Copyright `!p import datetime; snip.rv = datetime.date.today().year` Control4 Corporation. All rights reserved.
+ */
 endsnippet
 
 
