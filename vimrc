@@ -307,6 +307,7 @@ let NERDCommentWholeLinesInVMode=2 " whole lines commented out when there is no 
 " C/C++ Section
 " ==================================================================
 au BufRead,BufNewFile *.h,*.hpp,*.c,*.cpp,*.dox set ft=cpp.doxygen
+set cinoptions=:0(0
 
 " ==================================================================
 " Python Section
