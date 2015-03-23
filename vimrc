@@ -20,36 +20,29 @@ runtime! debian.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Sets how many lines of history VIM has to remember
 set history=300
-
 " Enable filetype plugin
 filetype plugin on
 filetype indent on
-
 " Set to auto read when a file is changed from the outside
 set autoread
-
 " With a map leader it's possible to do extra key combinations
 " like <Leader>w saves the current file
 let mapleader = ","
 let g:mapleader = ","
-
 " Fast saving
 nmap <Leader>w :w!<cr>
-
 " Fast quitting
 nmap <Leader>q :q<cr>
-
 " Fast editing of the .vimrc
 map <Leader>e :e! ~/.vim/vimrc<cr>
-
 " When vimrc is edited, reload it
-" autocmd! bufwritepost vimrc source ~/.vim_runtime/vimrc
 autocmd! bufwritepost vimrc source ~/.vim/vimrc
-
 " Turn on line numbers:
 set number
 " Toggle line numbers with F2 and fold column for easy copying:
 nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
+" Open vertical split windows on the right
+set splitright
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Diff options
