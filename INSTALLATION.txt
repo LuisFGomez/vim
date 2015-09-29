@@ -1,6 +1,0 @@
-1. Edit your main vimrc (.vimrc in linux or _vimrc in windows) to show only the following line:
-
-source ~/.vim/vimrc
-
-Enjoy!
-
