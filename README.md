@@ -9,5 +9,7 @@ Just a place to store my vim configuration, plugins, documentation, etc.
 3. Enjoy!
 
 ## Commands:
-FIXME: Add commands
+### Editing Shortcuts:
+- Surround visual selection with `()`, `{}`, `[]`, or `<space>` by using `,(`, `,{`, `,[`, and `,<space>`
+- Move current line, or visual line selection, up or down by using `<Ctrl>k` and `<Ctrl>j`
 
